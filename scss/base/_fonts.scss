@@ -1,0 +1,13 @@
+html, body {
+	 font-family: 'Oswald', sans-serif;
+	line-height: 1.8;
+	$css_property: font-size;
+	@include interpolate($css_property, $min_screen_interpolate, $max_screen_retina, $base_font_size, 24px);
+}
+
+h2 {
+	font-family: 'Bangers', cursive;
+	$css_property: font-size;
+	@include interpolate($css_property, $min_screen_interpolate, $max_screen_retina, 25px, 95px);
+  line-height: 1;
+}

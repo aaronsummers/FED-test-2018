@@ -1,0 +1,42 @@
+// Fluid sizes
+@mixin interpolate($properties, $min-screen, $max-screen,  $min-value, $max-value, $max-stop: null) {
+  & {
+    @if ($min-screen == $min_screen_interpolate ) {
+      @each $property in $properties {
+        #{$property}: $min-value;
+      }
+    }
+
+    @media screen and (min-width: $min-screen) and (max-width: $max-screen) {
+      @each $property in $properties {
+        #{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value); 
+      }
+    }
+    @if ($max-stop) {
+      @if ( $max-stop > $max-screen) {
+        @media screen and (min-width: $max-screen) and (max-width: $max-stop)  {
+          @each $property in $properties {
+            #{$property}: $max-value;
+          }
+        }
+      }
+    } @else {
+      @media screen and (min-width: $max-screen) {
+        @each $property in $properties {
+          #{$property}: $max-value;
+        }
+      }
+    }
+  }
+}
+@function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
+  $a: ($max-value - $min-value) / ($max-screen - $min-screen);
+  $b: $min-value - $a * $min-screen; 
+
+  $sign: "+";
+  @if ($b < 0) {
+    $sign: "-";
+    $b: abs($b);
+  }
+  @return calc(#{$a*100}vw #{$sign} #{$b});
+}

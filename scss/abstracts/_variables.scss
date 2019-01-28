@@ -1,0 +1,9 @@
+// CSS Easing
+$ease: cubic-bezier(0.25, 0.46, 0.45, 0.94); // /* easeOutQuad */
+
+// Screen Widths
+$max_screen_retina: 2560px;
+$min_screen_interpolate: 650px;
+
+// Set a base front size for mobiles
+$base_font_size: 14px;
